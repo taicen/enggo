@@ -1,0 +1,105 @@
+html,
+body {
+  height: 100%;
+  font-size: #{($browser-context) + px};
+  @media (max-width: $small) {
+    font-size: 12px;
+  }
+}
+
+body {
+  font-family: $font-texting;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: $color-second-light;
+}
+
+h1 {
+  font-size: rem(48);
+}
+
+a {
+	color: $color-second;
+	font-size: rem(14);
+	text-decoration: none;
+  margin: 15px 0;
+  transition: all 80ms ease-in-out;
+  
+  &:hover {
+    opacity: .7;
+  }
+}
+
+.b-main {
+  border-radius: 32px 0 0 32px;
+  background: $color-light;
+  flex: 1 0 0;
+  padding: 30px 16px;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+}
+
+// Temporary basic container
+.b-container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  // padding-left: 25px;
+  // padding-right: 25px;
+  align-items: stretch;
+  display: flex;
+  min-height: 100vh;
+
+  // @media (min-width: $middle) {
+  //   max-width: 800px;
+  // }
+  // @media (min-width: $tablet) {
+  //   max-width: 1020px;
+  // }
+  // @media (min-width: $desktop) {
+  //   max-width: 1180px;
+  //   padding-left: 0;
+  //   padding-right: 0;
+  // }
+  // @media (max-width: 768px) {
+  //   padding: 0 12px;
+  // }
+}
+
+.b-logo {
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.b-aside {
+  padding: 16px;
+  width: 300px;
+}
+
+table {
+  background: #f5f5fd;
+  padding: 15px;
+  padding-right: 100px;
+
+  td,
+  th {
+    padding: 20px;
+  }
+  @media (max-width: $middle) {
+    padding-right: 20px;
+    th,
+    td {
+      font-size: 14px;
+    }
+  }
+  @media (max-width: $sm) {
+    padding: 10px;
+    th,
+    td {
+      padding: 7px;
+    }
+  }
+}

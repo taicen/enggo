@@ -1,0 +1,33 @@
+.b-navigate {
+  .b-nav {
+    &__item {
+
+      .icon {
+        width: 24px;
+        height: 24px;
+        margin-right: 10px;
+        fill: $color-second;
+      }
+
+      a {
+        display: flex;
+        align-items: center;
+        padding: 15px 15px;
+        text-decoration: none;
+        font-size: $font-size-primary;
+        font-weight: 600;
+        color: $color-second;
+        border-radius: 14px;
+      }
+    }
+    .nuxt-link-active {
+      background-color: $color-accent;
+      color: $color-light;
+
+      .icon {
+        fill: $color-light;
+      }
+    }
+    .nuxt-link-exact-active {}
+  }
+}

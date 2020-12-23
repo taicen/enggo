@@ -1,0 +1,48 @@
+.form {
+	background-color: #FFFFFF;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 0 50px;
+	height: 100%;
+}
+
+.form-group {
+  margin: 10px 0;
+  &--btn {
+    margin: 20px 0;
+  }
+}
+
+.field {
+  border-radius: 14px;
+	background-color: $color-second-light;
+  padding: 12px 15px;
+  margin: 8px 0;
+  min-height: 42px;
+  border: 2px solid transparent;
+	width: 100%;
+  transition: border-color 80ms ease-in;
+  font-size: rem(16);
+  
+  &:focus {
+    outline: none;
+    border-color: $color-second;
+  }
+
+  &.is-error {
+    border-color: $color-error;
+  }
+  &.is-success {
+    border-color: $color-success;
+  }
+}
+
+input:-webkit-autofill, 
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+  box-shadow: 0 0 0px 1000px $color-second-light inset !important;
+}

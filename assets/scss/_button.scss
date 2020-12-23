@@ -1,0 +1,70 @@
+.btn {
+  font-family: $font-texting;
+	border-radius: 14px;
+	border: 2px solid transparent;
+	background-color: $color-accent;
+	color: $color-light;
+	font-size: rem(14);
+	font-weight: 600;
+	padding: 12px 45px;
+	// letter-spacing: 1px;
+  transition: all 80ms ease-in;
+
+  &:disabled {
+    background-color: $color-disable;
+    color: $color-disable-dark;
+
+    &:hover {
+      cursor: not-allowed;
+      background-color: $color-disable;
+      color: $color-disable-dark;
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+    background-color: $color-accent-light;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+  
+  &:focus {
+    outline: none;
+  }
+  
+  &--outline {
+    background-color: transparent;
+    border-color: $color-light;
+
+    &:hover {
+      border-color: $color-accent-light;
+      background-color: transparent;
+    }
+  }
+  &--ghost {
+    color: $color-accent;
+    background-color: rgba($color-ghost, 1);
+
+    &:hover {
+      border-color: $color-accent-light;
+      color: $color-accent-light;
+      background-color: transparent;
+    }
+  }
+  &--ghost-inverse {
+    color: $color-accent;
+    background-color: rgba($color-ghost, 1);
+
+    &:hover {
+      border-color: $color-ghost;
+      color: $color-ghost;
+      background-color: transparent;
+    }
+  }
+  &--uppercase {
+    text-transform: uppercase;
+  }
+  
+}

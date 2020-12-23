@@ -1,0 +1,67 @@
+@function rem($pixels, $context: $browser-context) {
+  @return #{$pixels/$context}rem;
+}
+
+$browser-context: 16;
+
+// fonts
+$font-heading: "Montserrat", Arial, sans-serif;
+$font-texting: "Montserrat", Arial, sans-serif;
+
+$font-size-h1: rem(28);
+$font-size-h2: rem(24);
+$font-size-h3: rem(20);
+$font-size-primary: rem(16);
+$font-size-small: rem(14);
+
+// colors
+$color-accent: #8667FF;
+$color-accent-light: #9276ff;
+
+$color-ghost: #F4F0FF;
+
+$color-main: #0B0B0B;
+$color-light: #fff;
+
+$color-second: #8887A6;
+$color-second-light: #EDEDF2;
+
+$color-disable: #eee;
+$color-disable-dark: #b6b6ce;
+
+$color-success: #3DD2AF;
+$color-success-light: #5adfc0;
+$color-warning: #F6954F;
+$color-warning-light: #f8a162;
+$color-error: #F64F4F;
+$color-error-light: #f86161;
+$color-info: #4F88F6;
+$color-info-light: #6193f7;
+
+// outline
+$outline-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.15);
+
+// transitions
+$transition-primary: 0.3s;
+$transition-secondary: 0.2s;
+
+$imgBase: "../images/";
+
+$small: 560px;
+$middle: 760px;
+$tablet: 1000px;
+$laptop: 1170px;
+$desktop: 1300px;
+$wide: 1400px;
+$large: 1800px;
+
+// breakpoints
+$xs: 380px;
+$sm: 560px;
+$smd: 780px;
+$md: 1000px;
+$slg: 1025px;
+$lg: 1285px;
+$xlg: 1370px;
+$xxlg: 1445px;
+$xxxlg: 1925px;

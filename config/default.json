@@ -1,0 +1,7 @@
+{
+  "port": 3001,
+  "jwtSecret": "mevn",
+  "jwtSecretRefresh": "mevn518645418ad4as4w4we53ef4qw4er6",
+  "mongoUri": "mongodb://127.0.0.1:27017/mevn",
+  "baseUrl": "http://localhost:3001"
+}
