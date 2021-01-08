@@ -1,15 +1,19 @@
 <template>
-  <label>
-    <span>{{label}}</span>
-    <input 
-      v-if="type !== 'textarea'"
-      :type="type" 
-      :value="value" 
-      :placeholder="placeholder" 
-      @input="handleInput" 
-      class="field" 
-      :class="[...classes, {'is-error': isError, 'is-success': isSuccess}]"
-    >
+  <label class="form-field">
+    <div class="form-field__wrap" v-if="type !== 'textarea'">
+      <input   
+        :type="type" 
+        :value="value" 
+        :placeholder="placeholder" 
+        @input="handleInput" 
+        class="field" 
+        :class="[...classes, {'is-error': isError, 'is-success': isSuccess}]"
+      >
+      <span v-if="label" class="form-field__label">{{label}}</span>
+      <div v-if="info" class="form-field__info">
+        <div class="text">{{info}}</div>
+      </div>
+    </div>
     <textarea v-else 
     :value="value"
     @input="handleInput"
@@ -17,6 +21,7 @@
     class="field"
     :class="[...classes, {'is-error': isError, 'is-success': isSuccess}]">
     </textarea>
+    
     <slot></slot>
   </label>
 </template>
@@ -40,13 +45,20 @@ export default {
       default: ()=>([])
     },
     placeholder: {
-      type: String
+      type: String,
+      default: ' '
+    },
+    info: {
+      type: String,
+      default: ''
     },
     isError: {
-      type: Boolean
+      type: Boolean,
+      default: false
     },
     isSuccess: {
-      type: Boolean
+      type: Boolean,
+      default: false
     }
   },
   // data: () => ({

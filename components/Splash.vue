@@ -5,56 +5,58 @@
 		<div class="form">
 			<UiTitle type="h1" :classes="['title']">Регистрация</UiTitle>
       <UiText :classes="['text--second-color text--small']">используйте свой email для регистрации</UiText>
-      <div class="form-group">
-				<UiField v-model="name" placeholder="Имя"/>
+      <div class="form-group form-group--half">
+				<UiField v-model="name" label="Имя"/>
 				<UiField 
 					type="email"
 					v-model="email"
-					placeholder="Email"
+					label="Email"
 					:is-error="$v.email.$error"
-					:is-success="!$v.email.$error"
+					:is-success="!$v.email.$invalid"
 				>
 					<UiErrorText v-if="$v.email.$error">Обязательно к заполнению</UiErrorText>
 				</UiField>
 				<UiField
 					type="password"
 					v-model="password"
-					placeholder="Пароль"
+					label="Пароль"
 					:is-error="$v.password.$error"
-					:is-success="!$v.password.$error"
+					:is-success="!$v.password.$invalid"
 				>
 					<UiErrorText v-if="$v.password.$error">Обязательно к заполнению</UiErrorText>
 				</UiField>
       </div>
-			<button class="btn" @click="register">Отправить</button>
+			<div class="form-group form-group--btn form-group--center">
+				<button class="btn" @click="register">Отправить</button>
+			</div>
 		</div>
 	</section>
 	<section class="form-container sign-in-container">
 		<div class="form">
 			<UiTitle type="h1" :classes="['title']">Войти</UiTitle>
 			<UiText :classes="['text--second-color text--small']">используйте свой аккаунт</UiText>
-      <div class="form-group">
+      <div class="form-group form-group--half">
         <UiField 
 					type="email" 
 					v-model="email" 
-					placeholder="Email" 
+					label="Email" 
 					:is-error="$v.email.$error" 
-					:is-success="!$v.email.$error"
+					:is-success="!$v.email.$invalid"
 				>
 					<UiErrorText v-if="$v.email.$error">Обязательно к заполнению</UiErrorText>
 				</UiField>
         <UiField 
 					type="password" 
 					v-model="password" 
-					placeholder="Пароль" 
+					label="Пароль" 
 					:is-error="$v.password.$error" 
-					:is-success="!$v.password.$error"
+					:is-success="!$v.password.$invalid"
 				>
 					<UiErrorText v-if="$v.password.$error">Обязательно к заполнению</UiErrorText>
 				</UiField>
       </div>
 			<a href="#">Забыли пароль?</a>
-      <div class="form-group form-group--btn">
+      <div class="form-group form-group--btn form-group--center">
 			  <button class="btn" @click="login">Войти</button>
       </div>
 		</div>
@@ -87,7 +89,7 @@ import UiErrorText from '~/components/atoms/ErrorText'
 import Loader from '~/components/atoms/Loader'
 import UiField from '~/components/moleculus/Field'
 
-import { required } from 'vuelidate/lib/validators';
+import { required, email, minLength } from 'vuelidate/lib/validators';
 
 export default {
   components:{
@@ -105,8 +107,8 @@ export default {
 		password: ''
 	}),
 	validations:{
-		email: { required },
-		password: { required },
+		email: { required, email },
+		password: { required, minLength: minLength(6) },
 	},
   methods: {
     toggleForm(){
