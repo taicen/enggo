@@ -21,7 +21,7 @@ const genericCrud = (model) => ({
   async create({body, file}, res) {
     console.log("create -> body ", body)
     try {
-      const item = new model(file ? {...body, imageUrl: file.path} : body)
+      const item = new model(file ? {...body, imageUrl: file} : body)
       const newItem = await item.save()
       return res.send({newItem})
     } catch(error) {
@@ -34,7 +34,7 @@ const genericCrud = (model) => ({
     // console.log("update -> body ", body)
     // console.log("update -> model ", model.schema)
     if(file){
-      const oldItem = await model.findById('5fe0a82125002640a08f7365')
+      const oldItem = await model.findById(id)
       fs.unlink(oldItem.imageUrl.path, function(err) {
         if (err) throw err;
         console.log('file deleted');
@@ -43,7 +43,7 @@ const genericCrud = (model) => ({
 
     try {
       const item = await model.findByIdAndUpdate(
-        {_id: '5fe0a82125002640a08f7365'}, 
+        {_id: id},
         file ? {...body, imageUrl: file} : body,
         { 
           new: true,

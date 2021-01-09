@@ -1,6 +1,10 @@
 <template>
-  <div>
-    <h1>Публикации</h1>
+  <section>
+    <header class="section__head">
+      <UiText :classes="['test text--second-color text--bold text--upper']">Раздел управления публикациями</UiText>
+      <UiTitle type="h1" :classes="['title']">Публикации</UiTitle>
+      <a href="#" @click.prevent="addPost" class="link-ctrl"><svg-icon name="add" class="icon-add"/></a>
+    </header>
     <div class="b-posts">
       <table>
         <thead>
@@ -24,14 +28,20 @@
         </tbody>
       </table>
     </div>
-  </div>
-  
+  </section>
 </template>
 
 <script>
+
+import UiText from '~/components/atoms/Text'
+import UiTitle from '~/components/atoms/Title'
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
+  components: {
+    UiText,
+    UiTitle
+  },
   data: ()=>({}),
   computed:{
     ...mapGetters({
@@ -62,6 +72,10 @@ export default {
         this.$toast.success('Пост успешно удален')
       }
       
+    },
+
+    addPost(){
+      this.$router.push('/admin/publics/add')
     }
   }
 }

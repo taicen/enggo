@@ -130,16 +130,28 @@ export default {
 				}
 			}
 		},
-		register(){
+		async register(){
 			this.$v.$touch();
 			if(!this.$v.$invalid){
-				// this.loader = true;
+				this.loader = true;
 				const data = {
 					name: this.name,
 					email: this.email,
 					password: this.password
 				}
+				const message = await this.$store.dispatch('auth/signup', data);
+				if(message){
+					this.$toast.success(message);
+					this.clearData();
+					this.$v.$reset();
+				}
+				this.loader = false;
 			}
+		},
+		clearData(){
+			this.name = '';
+			this.email = '';
+			this.password = '';
 		}
 	},
 	mounted(){

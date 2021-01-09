@@ -27,6 +27,7 @@ const H6 = Vue.component('H6', {
 })
 
 export default {
+  // name: 'UiTitle',
   props: {
     type: {
       type: String,

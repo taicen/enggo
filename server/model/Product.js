@@ -13,10 +13,10 @@ const schema = new Schema({
     type: String,
     default: ''
   },
-  // text: {
-  //   type: String,
-  //   default: ''
-  // },
+  text: {
+    type: String,
+    default: ''
+  },
   // price: {
   //   type: Number,
   //   default: ''

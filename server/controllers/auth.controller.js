@@ -88,7 +88,7 @@ module.exports = {
   },
   // регистрация или создание пользователя
   async signUp(req, res){
-    try{
+    try {
       const errors = validationResult(req)
 
       if (!errors.isEmpty()) {
@@ -111,7 +111,7 @@ module.exports = {
       await newUser.save()
 
       return res.status(201).send({message: 'Пользователь создан'})
-    }catch(errors){
+    } catch (errors) {
       res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' })
     }
   },

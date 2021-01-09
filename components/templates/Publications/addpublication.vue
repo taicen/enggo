@@ -1,18 +1,19 @@
 <template>
-<div>
-  <h1 v-if="isAdd">Добавление публикации</h1>
-  <h1 v-else>Редактирование публикации</h1>
+<section>
+  <header class="section__head">
+    <UiText :classes="['test text--second-color text--bold text--upper']">Раздел управления публикацей</UiText>
+    <UiTitle v-if="isAdd" type="h1" :classes="['title']">Добавление публикации</UiTitle>
+    <UiTitle v-else type="h1" :classes="['title']">Редактирование публикации</UiTitle>
+  </header>
 
   <UiField 
-    v-model="product.title"
-    placeholder=""
+    v-model="post.title"
     label="Название"
   />
 
   <UiField
     type="textarea" 
-    v-model="product.anons"
-    placeholder=""
+    v-model="post.anons"
     label="Анонс"
   />
   
@@ -25,7 +26,7 @@
   <div class="form-group">
     <label for="">
       Дата
-      <v-date-picker v-model="product.date">
+      <v-date-picker v-model="post.date">
         <template v-slot="{ inputValue, inputEvents }">
           <input
             class="field bg-white border px-2 py-1 rounded"
@@ -39,16 +40,19 @@
   <div class="form-group">
     <label for="">
       Постер
-      <Dropzone v-model="file" :dataFile="product.imageUrl" ref-name="posterDropzone"/>
+      <Dropzone v-if="!isAdd && post.imageUrl" v-model="file" :dataFile="post.imageUrl" ref-name="posterDropzone"/>
+      <Dropzone v-else v-model="file" ref-name="posterDropzone"/>
     </label>
   </div>
   <div class="form-group form-group--btn">
     <button class="btn" @click="send">Сохранить</button>
   </div>
-</div>
+</section>
 </template>
 
 <script>
+import UiText from '~/components/atoms/Text'
+import UiTitle from '~/components/atoms/Title'
 import UiField from '~/components/moleculus/Field'
 import Dropzone from '~/components/moleculus/Dropzone'
 import { VueEditor } from "vue2-editor";
@@ -56,9 +60,9 @@ import { VueEditor } from "vue2-editor";
 
 
 import { required } from 'vuelidate/lib/validators';
-import {mapActions, mapGetters} from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
-const post = {
+const POST = {
   title: '',
   date: new Date(),
   category: '',
@@ -71,11 +75,13 @@ export default {
   components: {
     UiField,
     VueEditor,
-    Dropzone
+    Dropzone,
+    UiText,
+    UiTitle
     // VueDatePicker
   },
   data:()=>({
-    post: {...post},
+    post: { ...POST },
     file: null    
   }),
   validations:{
@@ -84,10 +90,12 @@ export default {
       // anons: { required }
     }
   },
-  mounted(){
-    console.log("%c 🖊️: mounted -> this.$parent.post ", "font-size:16px;background-color:#686bac;color:white;", this)
+  async mounted(){
     // this.post = this.$parent.post || { ...post }
-    this.fetchProduct(this.$route.params.add)
+    if(!this.isAdd){
+      await this.fetchProduct(this.$route.params.add)
+      this.post = this.product
+    }
   },
   computed: {
     // ...mapGetters({

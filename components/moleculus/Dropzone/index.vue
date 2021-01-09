@@ -73,7 +73,7 @@ export default {
     }
   },
   mounted(){
-    // вставка изображения если есть    
+    // вставка изображения если есть
     if(this.dataFile){
       const file = { 
         size: this.dataFile.size, 

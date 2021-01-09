@@ -28,6 +28,20 @@ export const actions = {
 
   },
 
+  async signup({commit, dispatch}, data){
+    try { 
+      const result = await this.$axios.post('auth/signup', data)
+      if(result.data){
+        const { message } = result.data;
+        return message
+      }
+    } catch (e) {
+      if (e.response) {
+        commit('setError', e.response.data.message, {root: true})
+      }
+    }
+  },
+
   setToken({commit}, data){
     const { token } = data;
     const tokenData = jwt_decode(token)
@@ -70,6 +84,8 @@ export const actions = {
       } else {
         dispatch('logout')
       }
+    } else {
+      return accessToken
     }
   }
 }
@@ -85,6 +101,6 @@ function jwtDecode(token){
   }
   const jwtData = jwt_decode(token) || {}
   // console.log("%c 🍒: jwtDecode -> jwtData ", "font-size:16px;background-color:#d12c31;color:white;", jwtData)
-  const expires = jwtData.exp || 0
+  const expires = jwtData.exp
   return (new Date().getTime() / 1000) < expires
 }

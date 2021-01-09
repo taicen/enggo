@@ -5,7 +5,7 @@ const moment = require('moment')
 const storage = multer.diskStorage({
   destination(req, file, cb){
     // console.log("destination -> file ", file)
-    cb(null, path.resolve(__dirname, '../..', 'static'))
+    cb(null, path.resolve(__dirname, '../..', 'assets/images'))
   },
   filename(req, file, cb){
     // console.log("filename -> file ", file)

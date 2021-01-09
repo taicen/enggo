@@ -14,14 +14,16 @@
         <div class="text">{{info}}</div>
       </div>
     </div>
-    <textarea v-else 
-    :value="value"
-    @input="handleInput"
-    :placeholder="placeholder"
-    class="field"
-    :class="[...classes, {'is-error': isError, 'is-success': isSuccess}]">
-    </textarea>
-    
+    <div v-else class="form-field__wrap">
+      <textarea 
+        :value="value"
+        @input="handleInput"
+        :placeholder="placeholder"
+        class="field"
+        :class="[...classes, {'is-error': isError, 'is-success': isSuccess}]">
+      </textarea>
+      <span v-if="label" class="form-field__label">{{label}}</span>
+    </div>
     <slot></slot>
   </label>
 </template>
