@@ -57,11 +57,11 @@ export const actions = {
     })
   },
 
-  async update({}, data){
+  async update({}, {data, id}){
     console.log("%c 🥌: update -> data ", "font-size:16px;background-color:#ecf31e;color:black;", data)
     // const formData = formUrlencodeBuilder(data)
     const formData = formDataBuilder(data)
-    return await this.$axios.put(`products/${data.id}`, formData)
+    return await this.$axios.put(`products/${id}`, formData)
   },
 
   async create({}, data){

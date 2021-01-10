@@ -9,10 +9,14 @@ const schema = new Schema({
     type: String,
     default: ''
   },
-  products: {
-    type: ObjectId,
-    ref: 'Product'
+  id: {
+    type: Number,
+    default: 0
   }
+  // products: {
+  //   type: ObjectId,
+  //   ref: 'Product'
+  // }
 })
 
 module.exports = model('Category', schema)

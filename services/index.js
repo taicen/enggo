@@ -43,7 +43,7 @@ export default class GenericService {
       }
     }
   }
-  async update(id,payload){
+  async update(id, payload){
     try{
       const {data} = await axios.put(`${this.url}/${id}`, payload)
       return data

@@ -43,9 +43,9 @@ const crudStore = ({name, url}) => {
           })
         }
       },
-      async update({commit}, {payload, id}){
+      async update({commit}, {data, id}){
         try{
-          const item = await genericService.update(id, payload)
+          const item = await genericService.update(id, data)
           commit('update', item)
         }catch(error){
           commit('updateFail', {

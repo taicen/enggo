@@ -40,7 +40,7 @@
   <div class="form-group">
     <label for="">
       Постер
-      <Dropzone v-if="!isAdd && post.imageUrl" v-model="file" :dataFile="post.imageUrl" ref-name="posterDropzone"/>
+      <Dropzone v-if="!isAdd" v-model="file" :dataFile="poster" ref-name="posterDropzone"/>
       <Dropzone v-else v-model="file" ref-name="posterDropzone"/>
     </label>
   </div>
@@ -94,13 +94,13 @@ export default {
     // this.post = this.$parent.post || { ...post }
     if(!this.isAdd){
       await this.fetchProduct(this.$route.params.add)
-      this.post = this.product
+      this.post = {...POST, ...this.product}
     }
   },
   computed: {
-    // ...mapGetters({
-    //   product: 'products/item'
-    // }),
+    poster(){
+      return this.product.imageUrl
+    },
     product(){
       return this.$store.getters['products/item']
     },
@@ -119,7 +119,7 @@ export default {
 
         const res = this.isAdd ? 
           await this.$store.dispatch('post/create', {...this.post, file: this.file}) :
-          await this.$store.dispatch('post/update', {...this.post, file: this.file})
+          await this.$store.dispatch('post/update', {data: {...this.post, file: this.file}, id: this.$route.params.add })
 
         if(res){
           this.isAdd ? this.$toast.success('Запись добавлена!') : this.$toast.success('Запись обновлена!')

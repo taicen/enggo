@@ -1,7 +1,8 @@
 module.exports = {
   routes: [
-    // "categories",
+    "categories",
     "products",
-    "auth"
+    "auth",
+    "sync"
   ]
 }

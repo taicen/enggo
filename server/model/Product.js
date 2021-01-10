@@ -1,14 +1,10 @@
-const { model, Schema, Schema: {Types: {ObjectId}} } = require('mongoose');
+const { model, Schema, Schema: {Types: {ObjectId, Mixed}} } = require('mongoose');
 
 const schema = new Schema({
   title: {
     type: String,
     default: ''
   },
-  // description: {
-  //   type: String,
-  //   default: ''
-  // },
   anons: {
     type: String,
     default: ''
@@ -17,26 +13,30 @@ const schema = new Schema({
     type: String,
     default: ''
   },
-  // price: {
-  //   type: Number,
-  //   default: ''
-  // },
-  // amount: {
-  //   type: Number,
-  //   default: ''
-  // },
+  category_id: {
+    type: Number,
+    default: ''
+  },
+  product_id: {
+    type: String,
+    default: ''
+  },
+  price: {
+    type: Number,
+    default: ''
+  },
   date: {
     type: Date,
     default: Date.now
   },
   imageUrl: {
-    type: Object,
-    default: null
+    type: Mixed,
+    default: {}
   },
-  // category: {
-  //   type: ObjectId,
-  //   ref: 'Category'
-  // }
+  category: {
+    type: ObjectId,
+    ref: 'Category'
+  }
 })
 
 module.exports = model('Product', schema)

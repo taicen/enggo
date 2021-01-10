@@ -5,6 +5,7 @@ const genericCrud = (model) => ({
   async get({ params: {id} }, res) {
     try {
       const item = await model.findById(id)
+      console.log("%c 🇨🇫: get -> item ", "font-size:16px;background-color:#c36293;color:white;", item)
       return res.send(item)
     } catch(error) {
       res.status(400).send(Boom.boomify(error))
@@ -33,6 +34,7 @@ const genericCrud = (model) => ({
     // console.log("update -> id ", id)
     // console.log("update -> body ", body)
     // console.log("update -> model ", model.schema)
+
     if(file){
       const oldItem = await model.findById(id)
       fs.unlink(oldItem.imageUrl.path, function(err) {

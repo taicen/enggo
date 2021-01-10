@@ -3,5 +3,8 @@
   "jwtSecret": "mevn",
   "jwtSecretRefresh": "mevn518645418ad4as4w4we53ef4qw4er6",
   "mongoUri": "mongodb://127.0.0.1:27017/mevn",
-  "baseUrl": "http://localhost:3001"
+  "baseUrl": "http://localhost:3001",
+  "apiUrl": "https://app.frontpad.ru/api/index.php?",
+  "proxyUrl": "https://cors-anywhere.herokuapp.com/",
+  "apiKey": "zGrdKaYf5bZKKbyhK3Nibths2b9A3tyk4NrBNaHEbtdNzAZ7kzfrSsGEyF4h3kyR2NeBNQ5R88stybrHBA2eRyH94BhRNFyBfB3YdTAaRStaTKHf8zkNTZNHiZnZrHiz9aebTFbzizA577a5tkFb9eKh427fzfEyfKz3eBkrZKhSGhH3zb5yhDFarBfQGN8RkyEsYRHFrSkZ4YNn2EK87d8iFe3bS2S6fii54TAeBK4ryDEh6be3fdaNh4"
 }

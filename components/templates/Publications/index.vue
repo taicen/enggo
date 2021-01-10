@@ -16,7 +16,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="post in products.items" :key="post._id">
+          <tr v-for="post in posts" :key="post._id">
             <td>{{post.title}}</td>
             <td>{{post.date}}</td>
             <td>{{post.category}}</td>
@@ -36,24 +36,45 @@
 import UiText from '~/components/atoms/Text'
 import UiTitle from '~/components/atoms/Title'
 import {mapActions, mapGetters} from 'vuex'
+import products from '~/store/products'
 
 export default {
   components: {
     UiText,
     UiTitle
   },
-  data: ()=>({}),
+  data: ()=>({
+    posts: []
+  }),
   computed:{
     ...mapGetters({
-      products: 'products/items'
-    })
+      products: 'products/items',
+      categories: 'categories/items'
+    }),
+    computedPosts(){
+      let items = [];
+      this.products.items.forEach((product)=>{
+        let item = { ...product }
+        const obj = this.categories.items.find((category) => category.id === product.category_id)
+        if(obj){
+          item.category = obj.title
+        }
+        items.push(item)
+      })
+      return items
+    }
   },
-  mounted(){
-    this.fetchProducts()
+  async mounted(){
+    this.fetchProducts().then(res => {
+      this.fetchCategories().then(res => {
+        this.posts = this.computedPosts
+      })
+    })
   },
   methods: {
     ...mapActions({
-      'fetchProducts': 'products/fetchAll'
+      'fetchProducts': 'products/fetchAll',
+      'fetchCategories': 'categories/fetchAll'
     }),
     async deletePost(id){
       const result = await this.$swal({

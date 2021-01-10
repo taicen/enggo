@@ -70,20 +70,27 @@ export default {
     },
     removeFileInput(){
       this.$emit('input', '')
+    },
+    updateFile(){
+      if(this.dataFile){
+        const file = { 
+          size: this.dataFile.size, 
+          name: this.dataFile.originalname, 
+          type: this.dataFile.mimetype
+        };
+        const url = require(`~/assets/images/${this.dataFile.filename}`);
+
+        this.$refs[`${this.refName}`].manuallyAddFile(file, url);
+      }
+    }
+  },
+  watch: {
+    dataFile(){
+      this.updateFile()
     }
   },
   mounted(){
     // вставка изображения если есть
-    if(this.dataFile){
-      const file = { 
-        size: this.dataFile.size, 
-        name: this.dataFile.originalname, 
-        type: this.dataFile.mimetype
-      };
-      const url = require(`~/assets/images/${this.dataFile.filename}`);
-
-      this.$refs[`${this.refName}`].manuallyAddFile(file, url);
-    }
   }
 }
 </script>
