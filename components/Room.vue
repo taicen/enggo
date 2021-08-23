@@ -125,28 +125,27 @@ export default {
 
       try {
         //https://scholarships.s20.online/v2api/2/teacher/index
-        const myHeaders = new Headers()
-        myHeaders.append('X-ALFACRM-TOKEN', this.$attrs.token)
-        myHeaders.append('Content-Type', 'application/json')
+        // const myHeaders = new Headers()
+        // myHeaders.append('X-ALFACRM-TOKEN', this.$attrs.token)
+        // myHeaders.append('Content-Type', 'application/json')
 
-        const raw = JSON.stringify({
-          phone: phonenumber,
-        })
+        // const raw = JSON.stringify({
+        //   phone: phonenumber,
+        //   token: this.$attrs.token
+        // })
         // const raw = `{\n"phone": "${phonenumber}"\n}`
 
-        const requestOptions = {
-          method: 'POST',
-          headers: myHeaders,
-          body: raw,
-          redirect: 'follow',
-        }
+        // const requestOptions = {
+        //   method: 'POST',
+        //   headers: myHeaders,
+        //   body: raw,
+        //   redirect: 'follow',
+        // }
 
-        const teacher = await fetch(
-          process.env.prod
-            ? 'https://scholarships.s20.online/v2api/2/teacher/index'
-            : 'https://cors-anywhere.herokuapp.com/https://scholarships.s20.online/v2api/2/teacher/index',
-          requestOptions
-        ).then((response) => response.json())
+        const teacher = await this.$axios.$post(
+          '/sync/teacher',
+          formUrlencodeBuilder({ phone: phonenumber, token: this.$attrs.token })
+        )
 
         // console.log(
         //   '%c 🎃: enterRoom -> teacher ',
