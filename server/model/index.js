@@ -3,4 +3,5 @@ module.exports = {
   Category: require("./Category"),
   User: require("./User"),
   Token: require("./Token"),
+  Customer: require("./Customer")
 }

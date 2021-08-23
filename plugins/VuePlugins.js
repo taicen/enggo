@@ -4,9 +4,12 @@ import VCalendar from 'v-calendar';
 import VueToast from 'vue-toast-notification';
 import VueSweetalert2 from 'vue-sweetalert2';
 import VueCookie from 'vue-cookie';
-// Tell Vue to use the plugin
+import VueTheMask from 'vue-the-mask'
 
+// Tell Vue to use the plugin
 Vue.use(VueCookie);
+
+Vue.use(VueTheMask)
 
 const options = {
   confirmButtonColor: '#41b882',

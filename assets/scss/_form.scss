@@ -27,8 +27,6 @@ $field-padding: 15px;
   position: relative;
   display: flex;
   flex-wrap: wrap;
-
-  
 }
 
 .form-field__label {
@@ -119,11 +117,11 @@ $field-padding: 15px;
   padding: 12px $field-padding;
   margin: 8px 0;
   min-height: 42px;
-  border: 2px solid transparent;
+  border: 2px solid $color-second;
 	width: 100%;
   transition: border-color 80ms ease-in;
   font-size: rem(16);
-  
+
   &:focus {
     outline: none;
     border-color: $color-second;
@@ -133,10 +131,10 @@ $field-padding: 15px;
   &:not(:placeholder-shown) {
     &~ .form-field__label {
       transform: translateY(-100%);
-      top: 19px;
-      background: #fff;
+      top: 0;
+      left: 0;
+      // background: #fff;
       padding: 0 10px;
-      
     }
   }
 
@@ -150,7 +148,7 @@ $field-padding: 15px;
 
 
 
-input:-webkit-autofill, 
+input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {

@@ -3,6 +3,7 @@ module.exports = {
     "categories",
     "products",
     "auth",
-    "sync"
+    "sync",
+    "customer"
   ]
 }

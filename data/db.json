@@ -1,0 +1,17 @@
+[
+  {
+    "id": 12,
+    "email": "kaktus@kk.com",
+    "role": "teacher",
+    "name": "alex",
+    "phone": "+77783695862",
+    "link": "random"
+  },
+  {
+    "email": "shooler@kk.com",
+    "role": "schooler",
+    "name": "aleilei",
+    "phone": "+77783695861",
+    "teacher": 12
+  }
+]

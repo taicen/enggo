@@ -29,7 +29,7 @@ export const actions = {
   },
 
   async signup({commit, dispatch}, data){
-    try { 
+    try {
       const result = await this.$axios.post('auth/signup', data)
       if(result.data){
         const { message } = result.data;
@@ -46,7 +46,7 @@ export const actions = {
     const { token } = data;
     const tokenData = jwt_decode(token)
     this.$axios.setToken(token, 'Bearer')
-    $nuxt.$cookie.set('jwt-token', token, { expires: tokenData.exp })    
+    $nuxt.$cookie.set('jwt-token', token, { expires: tokenData.exp })
     commit('setToken', token)
   },
 
@@ -95,7 +95,7 @@ export const getters = {
   token: s => s.token
 }
 
-function jwtDecode(token){
+export function jwtDecode(token){
   if(!token){
     return false
   }

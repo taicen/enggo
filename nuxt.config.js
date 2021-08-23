@@ -4,7 +4,7 @@ export default {
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    title: 'simplacrm',
+    title: 'Enggo',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -49,10 +49,31 @@ export default {
   },
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {
-    baseURL: process.env.BASE_URL
+    baseURL: `http://${process.env.NODE_ENV === 'production' ? process.env.HOST : 'localhost'}:3001/api/v1`
+  },
+
+  telemetry: false,
+  loading: false,
+  loadingIndicator: false,
+
+  server: {
+    port: process.env.PORT,
+    host: '127.0.0.1',
+    timing: false
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
+    extractCSS: true,
+    splitChunks: {
+      layouts: false,
+      pages: true,
+      commons: true
+    }
+  },
+
+  env: {
+    prod: process.env.NODE_ENV === 'production' ? true : false,
+    baseUrl: `http://${process.env.NODE_ENV === 'production' ? process.env.HOST : 'localhost:3000'}`,
   }
 }
