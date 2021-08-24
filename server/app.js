@@ -32,7 +32,7 @@ async function start() {
       cert: fs.readFileSync(path.join(__dirname, 'sslcert', 'enggo.crt')) // путь к сертификату
     }
     app.listen(PORT, () => console.log(`App has been started on port ${PORT}...`))
-    https.createServer(httpsOptions, app).listen(443, () => console.log(`App has been started on port 443...`));
+    https.createServer(httpsOptions, app).listen(3443, () => console.log(`App has been started on port 3443...`));
   } catch (e) {
     console.log('Server Error', e.message)
     process.exit(1)

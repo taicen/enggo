@@ -1,3 +1,5 @@
+const fs = require('fs');
+const path = require("path");
 export default {
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
   ssr: false,
@@ -49,7 +51,7 @@ export default {
   },
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {
-    baseURL: `${process.env.NODE_ENV === 'production' ? 'https://' + process.env.HOST : 'http://localhost'}:3001/api/v1`
+    baseURL: `${process.env.NODE_ENV === 'production' ? 'https://' + process.env.HOST + ':3443/api/v1' : 'https://localhost:3443/api/v1'}`
   },
 
   telemetry: false,
@@ -57,7 +59,11 @@ export default {
   loadingIndicator: false,
 
   server: {
-    port: process.env.PORT, //80, //process.env.PORT,
+    https: {
+      key: fs.readFileSync(path.resolve(__dirname, 'server/sslcert', 'enggo.key')),
+      cert: fs.readFileSync(path.resolve(__dirname, 'server/sslcert', 'enggo.crt'))
+    },
+    port: 8443, //80, //process.env.PORT,
     host: '127.0.0.1', //process.env.HOST,
     timing: false
   },
@@ -74,6 +80,6 @@ export default {
 
   env: {
     prod: process.env.NODE_ENV === 'production' ? true : false,
-    baseUrl: `https://${process.env.NODE_ENV === 'production' ? process.env.HOST : 'localhost:3000'}`,
+    baseUrl: `https://${process.env.NODE_ENV === 'production' ? process.env.HOST : 'localhost'}`,
   }
 }
