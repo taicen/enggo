@@ -25,7 +25,7 @@
           allow="camera; microphone; fullscreen; speaker; display-capture"
           loading="lazy"
           sandbox="allow-forms allow-modals allow-scripts allow-popups"
-          referrerpolicy="no-referrer"
+          referrerpolicy="strict-origin-when-cross-origin"
         ></iframe>
         <button v-else type="button" class="btn" @click="includeRoom">
           Подключиться
