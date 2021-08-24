@@ -47,17 +47,14 @@ export default {
     }
   },
   mounted() {
-    if (!this.has_room) {
-      this.$router.push('/')
-    }
-
-    const id_room = jwt_decode(this.link_room)
+    // if (!this.has_room) {
+    //   this.$router.push('/')
+    // }
+    const id_room = jwt_decode(this.link_room) || {}
     this.main_room = id_room.room
-
     if (this.$cookie.get('teacher')) {
       this.linkchat = `https://linkchat.io/${id_room.room}`
     }
-
     const engGo = document.querySelector('[name="enggo"]')
     engGo.onload = () => {
       alert()
@@ -104,30 +101,41 @@ export default {
       }
     },
   },
-  async asyncData({ params, $axios }) {
+  async asyncData({ params, $axios, store }) {
     const link_room = params.id // When calling /abc the slug will be "abc"
-    let has_room = jwtDecode(link_room)
-    if (!has_room) {
-      const jwtData = jwt_decode(link_room)
-      // console.log(
-      //   '%c 🇰🇭: Data -> jwtData ',
-      //   'font-size:16px;background-color:#68d340;color:white;',
-      //   jwtData
-      // )
-      try {
-        await $axios.$post(
-          '/customer/clearroom',
-          formUrlencodeBuilder({ link: jwtData.link })
-        )
-      } catch (error) {
+    console.log(
+      '%c ➖: Data -> link_room ',
+      'font-size:16px;background-color:#a6f6bc;color:black;',
+      link_room
+    )
+    if (!link_room) store.$router.push('/')
+    try {
+      let has_room = jwtDecode(link_room)
+      if (!has_room) {
+        const jwtData = jwt_decode(link_room)
         console.log(
-          '%c 🤞: Data -> error ',
-          'font-size:16px;background-color:#6a9133;color:white;',
-          error
+          '%c 🇰🇭: Data -> jwtData ',
+          'font-size:16px;background-color:#68d340;color:white;',
+          jwtData
         )
+        try {
+          await $axios.$post(
+            '/customer/clearroom',
+            formUrlencodeBuilder({ link: jwtData.link })
+          )
+        } catch (error) {
+          console.log(
+            '%c 🤞: Data -> error ',
+            'font-size:16px;background-color:#6a9133;color:white;',
+            error
+          )
+        }
       }
+    } catch (error) {
+      store.$router.push('/')
     }
-    return { link_room, has_room }
+    //
+    return { link_room }
   },
 }
 </script>

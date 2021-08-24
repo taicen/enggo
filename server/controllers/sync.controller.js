@@ -37,6 +37,7 @@ module.exports = {
       })
     },
       function (error, response) {
+        console.log("%c 🎾: auth -> response ", "font-size:16px;background-color:#fdec4c;color:black;", response)
         return res.status(200).send(JSON.parse(response.body))
       }
     );

@@ -50,14 +50,14 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
 
-app.get("/room/*", (req, res) => {
-  // res.set({ 'Content-Security-Policy': 'frame-ancestors https://77.223.96.62 http://77.223.96.62 https://www.linkchat.io https://linkchat.io https://www.online.enggo.kz/ https://online.enggo.kz/' })
-  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
-});
+// app.get("/room/:id", (req, res) => {
+//   // res.set({ 'Content-Security-Policy': 'frame-ancestors https://77.223.96.62 http://77.223.96.62 https://www.linkchat.io https://linkchat.io https://www.online.enggo.kz/ https://online.enggo.kz/' })
+//   res.sendFile(path.join(__dirname, '../dist', 'index.html'));
+// });
 
 // 404 PAGE ===================
 app.get('*', function (req, res) {
-  res.sendFile(path.join(__dirname, 'dist', '200.html'));
+  res.sendFile(path.join(__dirname, '../dist', '200.html'));
 });
 
 const httpsOptions = {
