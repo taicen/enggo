@@ -61,8 +61,8 @@ app.get('*', function (req, res) {
 });
 
 const httpsOptions = {
-  key: fs.readFileSync(path.join(__dirname, 'sslcert', 'private.rtf')), // путь к ключу
-  cert: fs.readFileSync(path.join(__dirname, 'sslcert', 'certificate.rtf')) // путь к сертификату
+  key: fs.readFileSync(path.join(__dirname, 'sslcert', 'enggo.key')), // путь к ключу
+  cert: fs.readFileSync(path.join(__dirname, 'sslcert', 'enggo.crt')) // путь к сертификату
 }
 
 app.listen(port, () => console.log(`App has been started on port ${port}...`));
