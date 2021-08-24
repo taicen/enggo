@@ -11,6 +11,7 @@
           height="100%"
           scrolling="auto"
           frameborder="0"
+          loading="lazy"
         ></iframe>
       </div>
       <div class="linkchat">
@@ -22,6 +23,9 @@
           scrolling="auto"
           frameborder="0"
           allow="camera; microphone; fullscreen; speaker; display-capture"
+          loading="lazy"
+          sandbox="allow-forms allow-modals allow-scripts allow-popups"
+          referrerpolicy="no-referrer"
         ></iframe>
         <button v-else type="button" class="btn" @click="includeRoom">
           Подключиться
