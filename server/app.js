@@ -3,6 +3,9 @@ const bodyParser = require('body-parser')
 const config = require('config')
 const cors = require('cors');
 const mongoose = require('mongoose')
+const https = require('https');
+const fs = require('fs');
+const path = require("path");
 const { routes } = require("./routes");
 
 const app = express()
@@ -24,7 +27,12 @@ async function start() {
       useUnifiedTopology: true,
       useCreateIndex: true
     })
+    const httpsOptions = {
+      key: fs.readFileSync(path.join(__dirname, 'sslcert', 'enggo.key')), // путь к ключу
+      cert: fs.readFileSync(path.join(__dirname, 'sslcert', 'enggo.crt')) // путь к сертификату
+    }
     app.listen(PORT, () => console.log(`App has been started on port ${PORT}...`))
+    https.createServer(httpsOptions, app).listen(443, () => console.log(`App has been started on port 443...`));
   } catch (e) {
     console.log('Server Error', e.message)
     process.exit(1)

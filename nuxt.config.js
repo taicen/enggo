@@ -49,8 +49,7 @@ export default {
   },
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {
-    // baseURL: `http://${process.env.NODE_ENV === 'production' ? process.env.HOST : 'localhost'}:3001/api/v1`
-    baseURL: `http://${'localhost'}:3001/api/v1`
+    baseURL: `${process.env.NODE_ENV === 'production' ? 'https://' + process.env.HOST : 'http://localhost'}:3001/api/v1`
   },
 
   telemetry: false,
@@ -58,8 +57,8 @@ export default {
   loadingIndicator: false,
 
   server: {
-    port: process.env.NODE_ENV === 'production' ? 80 : process.env.PORT, //80, //process.env.PORT,
-    host: process.env.NODE_ENV === 'production' ? process.env.HOST : '127.0.0.1', //process.env.HOST,
+    port: process.env.PORT, //80, //process.env.PORT,
+    host: '127.0.0.1', //process.env.HOST,
     timing: false
   },
 
@@ -75,6 +74,6 @@ export default {
 
   env: {
     prod: process.env.NODE_ENV === 'production' ? true : false,
-    baseUrl: `http://${process.env.NODE_ENV === 'production' ? process.env.HOST : 'localhost:3000'}`,
+    baseUrl: `https://${process.env.NODE_ENV === 'production' ? process.env.HOST : 'localhost:3000'}`,
   }
 }
