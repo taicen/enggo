@@ -1,5 +1,5 @@
 const express = require("express");
-// const https = require('https');
+const https = require('https');
 const helmet = require('helmet');
 // const request = require("request");
 // const cookieParser = require("cookie-parser");
@@ -7,7 +7,7 @@ const bodyParser = require("body-parser");
 // const cookie = require("simple-cookie");
 // const createHtmlDom = require('htmldom');
 
-// const fs = require('fs');
+const fs = require('fs');
 const path = require("path");
 
 let app = express(),
@@ -18,20 +18,20 @@ let app = express(),
 app.use(bodyParser.urlencoded({ extended: true }))
 
 
-app.use(helmet.hidePoweredBy());
+// app.use(helmet.hidePoweredBy());
 // app.use(helmet.referrerPolicy({
 //   policy: "no-referrer",
 // }));
 
-app.use(helmet.contentSecurityPolicy({
-  useDefaults: true,
-  directives: {
-    frameAncestors: ["'self'", "https://77.223.96.62", "https://linkchat.io", "https://online.enggo.kz/"],
-    // scriptSrc: ["'self'", "example.com"],
-    // objectSrc: ["'none'"],
-    // upgradeInsecureRequests: [],
-  },
-}));
+// app.use(helmet.contentSecurityPolicy({
+//   useDefaults: true,
+//   directives: {
+//     frameAncestors: ["'self'", "https://77.223.96.62", "https://linkchat.io", "https://online.enggo.kz/"],
+//     scriptSrc: ["'self'", "example.com"],
+//     // objectSrc: ["'none'"],
+//     // upgradeInsecureRequests: [],
+//   },
+// }));
 // app.use(cookieParser());
 
 app.use("/", express.static("dist"));
@@ -46,12 +46,20 @@ app.use("/", express.static("static"));
 // });
 
 app.get("/", (req, res) => {
-  // res.header('Content-Security-Policy', 'frame-ancestors https://77.223.96.62 http://77.223.96.62 https://www.linkchat.io https://linkchat.io https://www.online.enggo.kz/ https://online.enggo.kz/;')
+  // res.set({ 'Content-Security-Policy': 'frame-ancestors https://77.223.96.62 http://77.223.96.62 https://www.linkchat.io https://linkchat.io https://www.online.enggo.kz/ https://online.enggo.kz/' })
   res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
 
+// 404 PAGE ===================
 app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname, '../dist', '200.html'));
 });
 
+const httpsOptions = {
+  key: fs.readFileSync(path.join(__dirname, 'sslcert', 'enggo.key')), // путь к ключу
+  cert: fs.readFileSync(path.join(__dirname, 'sslcert', 'enggo.crt')) // путь к сертификату
+}
+
 app.listen(port, () => console.log(`App has been started on port ${port}...`));
+
+https.createServer(httpsOptions, app).listen(443, () => console.log(`App has been started on port 443...`)); // 443
