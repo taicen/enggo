@@ -57,8 +57,8 @@ export default {
   loadingIndicator: false,
 
   server: {
-    port: process.env.PORT,
-    host: '127.0.0.1',
+    port: process.env.NODE_ENV === 'production' ? 80 : process.env.PORT, //80, //process.env.PORT,
+    host: process.env.NODE_ENV === 'production' ? process.env.HOST : '127.0.0.1', //process.env.HOST,
     timing: false
   },
 

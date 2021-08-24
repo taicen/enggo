@@ -6,9 +6,9 @@ module.exports = {
       instances: 4, // Or a number of instances
       max_memory_restart: '512M',
       watch: true,
-      // script: './node_modules/nuxt/bin/nuxt.js',
-      // args: 'start'
-      script: './server/index.js',
+      script: './node_modules/nuxt/bin/nuxt.js',
+      args: 'start',
+      // script: './server/index.js',
       env: {
         "PORT": 3000,
         "NODE_ENV": "development",
