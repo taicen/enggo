@@ -57,7 +57,7 @@ app.get("(/room/*)", (req, res) => {
 
 // 404 PAGE ===================
 app.get('*', function (req, res) {
-  res.sendFile(path.join(__dirname, '../dist', '200.html'));
+  res.sendFile(path.join(__dirname, 'dist', '200.html'));
 });
 
 const httpsOptions = {
