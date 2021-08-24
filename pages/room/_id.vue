@@ -24,7 +24,6 @@
           frameborder="0"
           allow="camera; microphone; fullscreen; speaker; display-capture"
           loading="lazy"
-          referrerpolicy="no-referrer"
         ></iframe>
         <button v-else type="button" class="btn" @click="includeRoom">
           Подключиться
