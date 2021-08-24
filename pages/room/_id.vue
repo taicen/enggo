@@ -11,7 +11,7 @@
           height="100%"
           scrolling="auto"
           frameborder="0"
-          :onload="onLoad"
+          name="enggo"
         ></iframe>
       </div>
       <div class="linkchat" v-if="iframeForm">
@@ -24,7 +24,7 @@
           frameborder="0"
           allow="camera; microphone; fullscreen; speaker; display-capture"
           loading="lazy"
-          sandbox="allow-storage-access-by-user-activation allow-downloads-without-user-activation"
+          referrerpolicy="no-referrer"
         ></iframe>
         <button v-else type="button" class="btn" @click="includeRoom">
           Подключиться
@@ -57,6 +57,12 @@ export default {
 
     if (this.$cookie.get('teacher')) {
       this.linkchat = `https://linkchat.io/${id_room.room}`
+    }
+
+    const engGo = document.querySelector('[name="enggo"]')
+    engGo.onload = () => {
+      alert()
+      this.iframeForm = true
     }
   },
   methods: {
