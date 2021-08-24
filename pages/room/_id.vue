@@ -11,10 +11,10 @@
           height="100%"
           scrolling="auto"
           frameborder="0"
-          loading="lazy"
+          :onload="onLoad"
         ></iframe>
       </div>
-      <div class="linkchat">
+      <div class="linkchat" v-if="iframeForm">
         <iframe
           v-if="linkchat"
           :src="linkchat"
@@ -24,7 +24,7 @@
           frameborder="0"
           allow="camera; microphone; fullscreen; speaker; display-capture"
           loading="lazy"
-          referrerpolicy="strict-origin"
+          sandbox="allow-storage-access-by-user-activation allow-downloads-without-user-activation"
         ></iframe>
         <button v-else type="button" class="btn" @click="includeRoom">
           Подключиться
@@ -44,6 +44,7 @@ export default {
     return {
       linkchat: '', //'https://linkchat.io/testik'
       main_room: '', // главная комната
+      iframeForm: false,
     }
   },
   mounted() {
@@ -59,6 +60,9 @@ export default {
     }
   },
   methods: {
+    onLoad() {
+      this.iframeForm = true
+    },
     async includeRoom() {
       const myHeaders = new Headers()
       // myHeaders.append('X-ALFACRM-TOKEN', this.$attrs.token)
