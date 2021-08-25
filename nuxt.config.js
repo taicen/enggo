@@ -80,6 +80,6 @@ export default {
 
   env: {
     prod: process.env.NODE_ENV === 'production' ? true : false,
-    baseUrl: `https://${process.env.NODE_ENV === 'production' ? process.env.HOST : 'localhost'}`,
+    baseUrl: `https://${process.env.NODE_ENV === 'production' ? 'platform.enggo.kz' : 'localhost'}`,
   }
 }

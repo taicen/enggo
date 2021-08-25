@@ -1,5 +1,6 @@
 const express = require("express");
 const https = require('https');
+const http = require('http');
 const helmet = require('helmet');
 // const request = require("request");
 // const cookieParser = require("cookie-parser");
@@ -65,6 +66,14 @@ const httpsOptions = {
   cert: fs.readFileSync(path.join(__dirname, 'sslcert', 'cert.pem')) // путь к сертификату
 }
 
-app.listen(port, () => console.log(`App has been started on port ${port}...`));
+// app.listen(port, () => console.log(`App has been started on port ${port}...`));
+// platform.enggo.kz
 
 https.createServer(httpsOptions, app).listen(443, () => console.log(`App has been started on port 443...`));
+
+http.createServer(function (req, res) {
+  res.writeHead(301, { "Location": "https://" + req.headers['host'].replace(port, 443) + req.url });
+  console.log("http request, will go to >> ");
+  console.log("https://" + req.headers['host'].replace(port, 443) + req.url);
+  res.end();
+}).listen(port);
