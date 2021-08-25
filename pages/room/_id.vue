@@ -119,20 +119,20 @@ export default {
           jwtData
         )
         try {
-          // await $axios.$post(
-          //   '/customer/clearroom',
-          //   formUrlencodeBuilder({ link: jwtData.link })
-          // )
-          const myHeaders = new Headers()
-          myHeaders.append('Content-Type', 'application/x-www-form-urlencoded')
-          await fetch(`${process.env.apiUrl}/customer/clearroom`, {
-            method: 'POST',
-            headers: myHeaders,
-            body: formUrlencodeBuilder({
-              link: jwtData.link,
-            }),
-            redirect: 'follow',
-          })
+          await $axios.$post(
+            '/customer/clearroom',
+            formUrlencodeBuilder({ link: jwtData.link })
+          )
+          // const myHeaders = new Headers()
+          // myHeaders.append('Content-Type', 'application/x-www-form-urlencoded')
+          // await fetch(`${process.env.apiUrl}/customer/clearroom`, {
+          //   method: 'POST',
+          //   headers: myHeaders,
+          //   body: formUrlencodeBuilder({
+          //     link: jwtData.link,
+          //   }),
+          //   redirect: 'follow',
+          // })
         } catch (error) {
           console.log(
             '%c 🤞: Data -> error ',
