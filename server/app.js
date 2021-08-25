@@ -34,6 +34,10 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use("/", express.static("dist"));
 app.use("/", express.static("static"));
 
+routes.forEach(route => {
+  app.use(`/api/v1/${route}`, require(`./routes/${route}`))
+});
+
 app.get("/", (req, res) => {
   // res.set({ 'Content-Security-Policy': 'frame-ancestors https://77.223.96.62 http://77.223.96.62 https://www.linkchat.io https://linkchat.io https://www.online.enggo.kz/ https://online.enggo.kz/' })
   res.sendFile(path.join(__dirname, 'dist', 'index.html'));
@@ -42,10 +46,6 @@ app.get("/", (req, res) => {
 // 404 PAGE ===================
 app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname, '../dist', '200.html'));
-});
-
-routes.forEach(route => {
-  app.use(`/api/v1/${route}`, require(`./routes/${route}`))
 });
 
 const httpsOptions = {
