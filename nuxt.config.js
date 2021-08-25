@@ -51,7 +51,7 @@ export default {
   },
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {
-    baseURL: '/api/v1'
+    baseURL: 'https://' + process.env.HOST + '/api/v1'
   },
 
   telemetry: false,
