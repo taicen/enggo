@@ -61,10 +61,10 @@ app.get('*', function (req, res) {
 });
 
 const httpsOptions = {
-  key: fs.readFileSync(path.join(__dirname, 'sslcert', 'enggo.key')), // путь к ключу
-  cert: fs.readFileSync(path.join(__dirname, 'sslcert', 'enggo.crt')) // путь к сертификату
+  key: fs.readFileSync(path.join(__dirname, 'sslcert', 'key.pem')), // путь к ключу
+  cert: fs.readFileSync(path.join(__dirname, 'sslcert', 'cert.pem')) // путь к сертификату
 }
 
 app.listen(port, () => console.log(`App has been started on port ${port}...`));
 
-https.createServer(httpsOptions, app).listen(443, () => console.log(`App has been started on port 443...`)); // 443
+https.createServer(httpsOptions, app).listen(443, () => console.log(`App has been started on port 443...`));
