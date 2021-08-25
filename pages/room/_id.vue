@@ -206,6 +206,7 @@ export default {
   flex: 1 0 auto;
   width: 65%;
   position: relative;
+  padding-top: 56px;
 }
 .linkchat {
   flex: 1 0 auto;
