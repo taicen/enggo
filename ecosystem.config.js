@@ -8,7 +8,7 @@ module.exports = {
       watch: true,
       // script: './node_modules/nuxt/bin/nuxt.js',
       // args: 'start',
-      script: './server/index.js',
+      script: './server/app.js',
       env: {
         "PORT": 3000,
         "NODE_ENV": "development",
@@ -18,20 +18,20 @@ module.exports = {
         "NODE_ENV": "production",
       }
     },
-    {
-      name: 'admin',
-      script: './server/app.js',
-      watch: true,
-      max_memory_restart: '512M'
-      // env: {
-      //   "PORT": 3000,
-      //   "NODE_ENV": "development",
-      // },
-      // env_production: {
-      //   "PORT": 80,
-      //   "NODE_ENV": "production",
-      // }
-    },
+    // {
+    //   name: 'admin',
+    //   script: './server/app.js',
+    //   watch: true,
+    //   max_memory_restart: '512M'
+    //   // env: {
+    //   //   "PORT": 3000,
+    //   //   "NODE_ENV": "development",
+    //   // },
+    //   // env_production: {
+    //   //   "PORT": 80,
+    //   //   "NODE_ENV": "production",
+    //   // }
+    // },
   ],
 
   deploy: {
