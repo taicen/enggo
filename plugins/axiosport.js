@@ -18,7 +18,7 @@ export default ctx => {
       request.headers.common['Authorization'] = `Bearer ${token}`
     }
 
-    // console.log("%c 🚇: request ", "font-size:16px;background-color:#92c2fb;color:black;", request)
+    console.log("%c 🚇: request ", "font-size:16px;background-color:#92c2fb;color:black;", request)
     return request
   })
 

@@ -77,32 +77,60 @@ export default {
   },
   methods: {
     async generateRoom(phonenumber) {
-      const user = await this.$axios.post(
-        '/customer/generate',
-        formUrlencodeBuilder({
+      const myHeaders = new Headers()
+      myHeaders.append('Content-Type', 'application/x-www-form-urlencoded')
+
+      const response = await fetch(`${process.env.apiUrl}/customer/generate`, {
+        method: 'POST',
+        headers: myHeaders,
+        body: formUrlencodeBuilder({
           phone: phonenumber,
         }),
-        {
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-        }
+        redirect: 'follow',
+      })
+      const user = await response.json()
+      console.log(
+        '%c 🇽🇰: user ',
+        'font-size:16px;background-color:#2130dc;color:white;',
+        user
       )
 
-      if (jwtDecode(user.data.accessToken)) {
-        this.link = 'room/' + user.data.accessToken
-        this.$cookie.set('teacher', user.data.accessToken, { expires: '2h' })
+      // const user = await this.$axios.post(
+      //   '/customer/generate',
+      //   formUrlencodeBuilder({
+      //     phone: phonenumber,
+      //   }),
+      //   {
+      //     headers: {
+      //       'Content-Type': 'application/x-www-form-urlencoded',
+      //     },
+      //   }
+      // )
+
+      if (jwtDecode(user.accessToken)) {
+        this.link = 'room/' + user.accessToken
+        this.$cookie.set('teacher', user.accessToken, { expires: '2h' })
       } else {
-        const jwtData = jwt_decode(user.data.accessToken)
+        const jwtData = jwt_decode(user.accessToken)
         // console.log(
         //   '%c 🇮🇶: generateRoom -> jwtData ',
         //   'font-size:16px;background-color:#4d5b47;color:white;',
         //   jwtData
         // )
-        await this.$axios.post(
-          '/customer/clearroom',
-          formUrlencodeBuilder({ link: jwtData.link })
-        )
+
+        await fetch(`${process.env.apiUrl}/customer/clearroom`, {
+          method: 'POST',
+          headers: myHeaders,
+          body: formUrlencodeBuilder({
+            link: jwtData.link,
+          }),
+          redirect: 'follow',
+        })
+
+        // await this.$axios.post(
+        //   '/customer/clearroom',
+        //   formUrlencodeBuilder({ link: jwtData.link })
+        // )
         await this.generateRoom(phonenumber)
       }
     },
@@ -125,27 +153,25 @@ export default {
 
       try {
         //https://scholarships.s20.online/v2api/2/teacher/index
-        // const myHeaders = new Headers()
+        const myHeaders = new Headers()
         // myHeaders.append('X-ALFACRM-TOKEN', this.$attrs.token)
-        // myHeaders.append('Content-Type', 'application/json')
+        myHeaders.append('Content-Type', 'application/x-www-form-urlencoded')
 
-        // const raw = JSON.stringify({
-        //   phone: phonenumber,
-        //   token: this.$attrs.token
-        // })
-        // const raw = `{\n"phone": "${phonenumber}"\n}`
+        // const teacher = await this.$axios.$post(
+        //   '/sync/teacher',
+        //   formUrlencodeBuilder({ phone: phonenumber, token: this.$attrs.token })
+        // )
 
-        // const requestOptions = {
-        //   method: 'POST',
-        //   headers: myHeaders,
-        //   body: raw,
-        //   redirect: 'follow',
-        // }
-
-        const teacher = await this.$axios.$post(
-          '/sync/teacher',
-          formUrlencodeBuilder({ phone: phonenumber, token: this.$attrs.token })
-        )
+        const response = await fetch(`${process.env.apiUrl}/sync/teacher`, {
+          method: 'POST',
+          headers: myHeaders,
+          body: formUrlencodeBuilder({
+            phone: phonenumber,
+            token: this.$attrs.token,
+          }),
+          redirect: 'follow',
+        })
+        const teacher = await response.json()
 
         // console.log(
         //   '%c 🎃: enterRoom -> teacher ',

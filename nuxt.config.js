@@ -51,7 +51,7 @@ export default {
   },
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {
-    baseURL: `${process.env.NODE_ENV === 'production' ? 'https://platform.enggo.kz:3443/api/v1' : 'https://localhost:3443/api/v1'}`
+    baseURL: `${process.env.NODE_ENV === 'production' ? 'https://' + process.env.HOST + ':3443/api/v1' : 'https://localhost:3443/api/v1'}`
   },
 
   telemetry: false,
@@ -63,7 +63,7 @@ export default {
       key: fs.readFileSync(path.resolve(__dirname, 'server/sslcert', 'enggo.key')),
       cert: fs.readFileSync(path.resolve(__dirname, 'server/sslcert', 'enggo.crt'))
     },
-    port: 8443, //80, //process.env.PORT,
+    port: 3000, //80, //process.env.PORT,
     host: '127.0.0.1', //process.env.HOST,
     timing: false
   },
@@ -81,5 +81,6 @@ export default {
   env: {
     prod: process.env.NODE_ENV === 'production' ? true : false,
     baseUrl: `https://${process.env.NODE_ENV === 'production' ? 'platform.enggo.kz' : 'localhost'}`,
+    apiUrl: `https://${process.env.NODE_ENV === 'production' ? process.env.HOST : 'localhost'}:3443/api/v1`,
   }
 }

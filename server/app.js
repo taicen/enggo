@@ -28,8 +28,8 @@ async function start() {
       useCreateIndex: true
     })
     const httpsOptions = {
-      key: fs.readFileSync(path.join(__dirname, 'sslcert', 'enggo.key')), // путь к ключу
-      cert: fs.readFileSync(path.join(__dirname, 'sslcert', 'enggo.crt')) // путь к сертификату
+      key: fs.readFileSync(path.join(__dirname, 'sslcert', 'key.pem')), // путь к ключу
+      cert: fs.readFileSync(path.join(__dirname, 'sslcert', 'cert.pem')) // путь к сертификату
     }
     app.listen(PORT, () => console.log(`App has been started on port ${PORT}...`))
     https.createServer(httpsOptions, app).listen(3443, () => console.log(`App has been started on port 3443...`));
