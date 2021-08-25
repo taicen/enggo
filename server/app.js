@@ -14,11 +14,15 @@ const app = express()
 
 const whitelist = ['https://platform.enggo.kz', 'https://77.223.96.62']
 const corsOptionsDelegate = function (req, callback) {
-  let corsOptions;
+  let corsOptions = {
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
+    preflightContinue: false,
+    optionsSuccessStatus: 204
+  }
   if (whitelist.indexOf(req.header('Origin')) !== -1) {
-    corsOptions = { origin: true } // reflect (enable) the requested origin in the CORS response
+    corsOptions.origin = true // reflect (enable) the requested origin in the CORS response
   } else {
-    corsOptions = { origin: false } // disable CORS for this request
+    corsOptions.origin = false // disable CORS for this request
   }
   callback(null, corsOptions) // callback expects two parameters: error and options
 }
