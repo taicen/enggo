@@ -1,9 +1,45 @@
 <template>
   <div class="room">
     <div class="room__inner">
-      <div class="classroom">
+      <div class="classroom" ref="classroom">
         <div class="room__panel">
           <div class="room__logo"><img src="/logo.png" alt="enggo" /></div>
+          <div
+            class="room__fullscreen"
+            @click="toggleRoom"
+            :class="{ active: this.full }"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              width="24"
+              height="24"
+              :fill="full ? '#fff' : '#000'"
+            >
+              <path fill="none" d="M0 0h24v24H0z" />
+              <path
+                d="M21 3a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h18zm-1 2H4v14h16V5zm-7 12v-2h3v-3h2v5h-5zM11 7v2H8v3H6V7h5z"
+              />
+            </svg>
+          </div>
+          <div
+            class="room__fullscreen-mob"
+            @click="toggleRoomMob"
+            :class="{ active: this.full }"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              width="24"
+              height="24"
+              :fill="full ? '#000' : '#fff'"
+            >
+              <path fill="none" d="M0 0h24v24H0z" />
+              <path
+                d="M21 3a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h18zm-1 2H4v14h16V5zm-7 12v-2h3v-3h2v5h-5zM11 7v2H8v3H6V7h5z"
+              />
+            </svg>
+          </div>
         </div>
         <iframe
           src="https://online.enggo.kz/"
@@ -14,7 +50,7 @@
           name="enggo"
         ></iframe>
       </div>
-      <div class="linkchat" v-if="iframeForm">
+      <div class="linkchat" v-if="iframeForm" v-show="!full" ref="linkchat">
         <iframe
           v-if="linkchat"
           :src="linkchat"
@@ -44,6 +80,7 @@ export default {
       linkchat: '', //'https://linkchat.io/testik'
       main_room: '', // главная комната
       iframeForm: false,
+      full: false,
     }
   },
   mounted() {
@@ -65,6 +102,27 @@ export default {
     onLoad() {
       this.iframeForm = true
     },
+    toggleRoom() {
+      const classroom = this.$refs.classroom
+      // const linkchat = this.$refs.linkchat
+      if (!this.full) {
+        classroom.classList.width = '100%'
+        this.full = true
+      } else {
+        this.full = false
+      }
+    },
+    toggleRoomMob() {
+      const classroom = this.$refs.classroom
+      // const linkchat = this.$refs.linkchat
+      if (this.full) {
+        // classroom.classList.width = '100%'
+        this.full = false
+      } else {
+        this.full = true
+      }
+    },
+
     async includeRoom() {
       const myHeaders = new Headers()
       // myHeaders.append('X-ALFACRM-TOKEN', this.$attrs.token)
@@ -167,6 +225,27 @@ export default {
     width: 185px;
   }
 }
+.room__fullscreen {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  @media (max-width: 680px) {
+    display: none;
+  }
+}
+.room__fullscreen-mob {
+  display: none;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  @media (max-width: 680px) {
+    display: block;
+  }
+}
 .room__panel {
   position: absolute;
   top: 0;
@@ -211,12 +290,21 @@ export default {
       rgba(0, 0, 0, 0) 100%
     );
   }
+
+  @media (max-width: 680px) {
+    position: fixed;
+    z-index: 1;
+  }
 }
 .classroom {
   flex: 1 0 auto;
   width: 65%;
   position: relative;
   padding-top: 56px;
+
+  @media (max-width: 680px) {
+    width: 100%;
+  }
 }
 .linkchat {
   flex: 1 0 auto;
@@ -226,6 +314,16 @@ export default {
 
   .btn {
     align-self: center;
+  }
+
+  @media (max-width: 680px) {
+    position: absolute;
+    top: 56px;
+    left: 0;
+    height: 100%;
+    background: cornsilk;
+    z-index: 2;
+    width: 100%;
   }
 }
 </style>
