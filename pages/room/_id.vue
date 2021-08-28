@@ -48,6 +48,7 @@
           scrolling="auto"
           frameborder="0"
           name="enggo"
+          sandbox="allow-scripts allow-popups allow-same-origin"
         ></iframe>
       </div>
       <div class="linkchat" v-if="iframeForm" v-show="!full" ref="linkchat">
