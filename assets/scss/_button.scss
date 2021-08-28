@@ -1,11 +1,11 @@
 .btn {
   font-family: $font-texting;
-	border-radius: 14px;
+	border-radius: 8px;
 	border: 2px solid transparent;
 	background-color: $color-accent;
 	color: $color-light;
-	font-size: rem(14);
-	font-weight: 600;
+	font-size: rem(18);
+	font-weight: 700;
 	padding: 12px 45px;
 	// letter-spacing: 1px;
   transition: all 80ms ease-in;
@@ -29,11 +29,11 @@
   &:active {
     transform: scale(0.95);
   }
-  
+
   &:focus {
     outline: none;
   }
-  
+
   &--outline {
     background-color: transparent;
     border-color: $color-light;
@@ -66,5 +66,5 @@
   &--uppercase {
     text-transform: uppercase;
   }
-  
+
 }

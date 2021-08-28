@@ -14,7 +14,7 @@
               viewBox="0 0 24 24"
               width="24"
               height="24"
-              :fill="full ? '#fff' : '#000'"
+              fill="#fff"
             >
               <path fill="none" d="M0 0h24v24H0z" />
               <path
@@ -32,7 +32,7 @@
               viewBox="0 0 24 24"
               width="24"
               height="24"
-              :fill="full ? '#000' : '#fff'"
+              fill="#fff"
             >
               <path fill="none" d="M0 0h24v24H0z" />
               <path
