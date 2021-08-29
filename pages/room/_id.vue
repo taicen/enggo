@@ -48,7 +48,7 @@
           scrolling="auto"
           frameborder="0"
           name="enggo"
-          sandbox="allow-scripts allow-popups allow-same-origin"
+          loading="lazy"
         ></iframe>
       </div>
       <div class="linkchat" v-if="iframeForm" v-show="!full" ref="linkchat">
@@ -223,7 +223,7 @@ export default {
   display: flex;
 
   img {
-    width: 130px;
+    width: 118px;
   }
 }
 .room__fullscreen {
