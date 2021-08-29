@@ -19,7 +19,7 @@ export default {
     script: [
       {
         innerHTML: `
-          document.domain = "online.enggo.kz"
+          document.domain = "enggo.kz"
         `,
         type: 'text/javascript',
         charset: 'utf-8'
