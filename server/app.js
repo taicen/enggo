@@ -64,16 +64,16 @@ async function start() {
       useCreateIndex: true
     })
 
-    // http.createServer(function (req, res) {
-    //   res.writeHead(301, { "Location": "https://" + req.headers['host'].replace(PORT, 443) + req.url });
-    //   console.log("http request, will go to >> ");
-    //   console.log("https://" + req.headers['host'].replace(PORT, 443) + req.url);
-    //   res.end();
-    // }).listen(PORT);
+    http.createServer(function (req, res) {
+      res.writeHead(301, { "Location": "https://" + req.headers['host'].replace(PORT, 443) + req.url });
+      console.log("http request, will go to >> ");
+      console.log("https://" + req.headers['host'].replace(PORT, 443) + req.url);
+      res.end();
+    }).listen(PORT);
 
-    // https.createServer(httpsOptions, app).listen(443, () => console.log(`App has been started on port 443...`));
+    https.createServer(httpsOptions, app).listen(443, () => console.log(`App has been started on port 443...`));
 
-    app.listen(PORT, () => console.log(`App has been started on port ${PORT}...`))
+    // app.listen(PORT, () => console.log(`App has been started on port ${PORT}...`))
   } catch (e) {
     console.log('Server Error', e.message)
     process.exit(1)
