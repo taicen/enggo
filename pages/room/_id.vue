@@ -223,7 +223,7 @@ export default {
   display: flex;
 
   img {
-    width: 185px;
+    width: 130px;
   }
 }
 .room__fullscreen {

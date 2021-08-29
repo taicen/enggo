@@ -12,24 +12,22 @@ const path = require("path");
 
 const app = express()
 
-// const whitelist = ['https://platform.enggo.kz', 'https://77.223.96.62']
-// const corsOptionsDelegate = function (req, callback) {
-//   let corsOptions = {
-//     methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
-//     preflightContinue: false,
-//     optionsSuccessStatus: 204
-//   }
-//   if (whitelist.indexOf(req.header('Origin')) !== -1) {
-//     corsOptions.origin = false // reflect (enable) the requested origin in the CORS response
-//   } else {
-//     corsOptions.origin = true // disable CORS for this request
-//   }
-//   callback(null, corsOptions) // callback expects two parameters: error and options
-// }
+const whitelist = ['https://platform.enggo.kz', 'https://77.223.96.62', 'https://online.enggo.kz', 'https://enggo.kz']
+const corsOptionsDelegate = function (req, callback) {
+  let corsOptions = {
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
+    preflightContinue: false,
+    optionsSuccessStatus: 204
+  }
+  if (whitelist.indexOf(req.header('Origin')) !== -1) {
+    corsOptions.origin = false // reflect (enable) the requested origin in the CORS response
+  } else {
+    corsOptions.origin = true // disable CORS for this request
+  }
+  callback(null, corsOptions) // callback expects two parameters: error and options
+}
 
-app.use(cors({
-  origin: '*'
-}))
+app.use(cors(corsOptionsDelegate))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
