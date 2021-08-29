@@ -3,7 +3,7 @@
     <div class="room__inner">
       <div class="classroom" ref="classroom">
         <div class="room__panel">
-          <div class="room__logo"><img src="/logo.png" alt="enggo" /></div>
+          <div class="room__logo"><img src="/logo_id.png" alt="enggo" /></div>
           <div
             class="room__fullscreen"
             @click="toggleRoom"
@@ -223,7 +223,7 @@ export default {
   display: flex;
 
   img {
-    width: 118px;
+    width: 110px;
   }
 }
 .room__fullscreen {
