@@ -14,6 +14,16 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+    ],
+    __dangerouslyDisableSanitizers: ['script'],
+    script: [
+      {
+        innerHTML: `
+          document.domain = "enggo.kz"
+        `,
+        type: 'text/javascript',
+        charset: 'utf-8'
+      }
     ]
   },
 

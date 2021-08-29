@@ -27,7 +27,9 @@ const app = express()
 //   callback(null, corsOptions) // callback expects two parameters: error and options
 // }
 
-app.use(cors())
+app.use(cors({
+  origin: '*'
+}))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
