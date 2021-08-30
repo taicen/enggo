@@ -220,10 +220,11 @@ export default {
   width: 100%;
 }
 .room__logo {
-  display: flex;
+  display: inline-flex;
 
   img {
     width: 110px;
+    height: 56px;
   }
 }
 .room__fullscreen {
