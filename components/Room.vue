@@ -209,6 +209,11 @@ export default {
   width: 250px;
   display: flex;
   margin: 0 auto 30px;
+
+  img {
+    width: 250px;
+    height: 128px;
+  }
 }
 .enter-form {
   align-self: center;
